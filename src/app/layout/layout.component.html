@@ -1,0 +1,21 @@
+<div class="layout-container">
+  <!-- Show navbar and header only when authenticated -->
+  <ng-container *ngIf="isAuthenticated">
+    <app-navbar [isCollapsed]="isSidebarCollapsed" (toggleSidebar)="toggleSidebar()"></app-navbar>
+    
+    <div class="main-content" [class.sidebar-collapsed]="isSidebarCollapsed">
+      <app-header (toggleSidebar)="toggleSidebar()"></app-header>
+      
+      <main class="content-area">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  </ng-container>
+  
+  <!-- Show only router outlet for login/register pages -->
+  <ng-container *ngIf="!isAuthenticated">
+    <main class="auth-content">
+      <router-outlet></router-outlet>
+    </main>
+  </ng-container>
+</div>

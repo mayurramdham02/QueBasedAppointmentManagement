@@ -1,0 +1,45 @@
+<header class="header">
+  <div class="header-container">
+    <div class="header-left">
+      <button class="menu-toggle" (click)="onToggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="logo">
+        <img src="assets/logo.png" alt="SmartPod" />
+        <span>SmartPod</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <div class="user-profile">
+        <div class="user-info">
+          <span class="user-name">{{ (user | async)?.name || 'User' }}</span>
+          <span class="user-role">{{ (user | async)?.role || 'User' }}</span>
+        </div>
+        <div class="user-avatar">
+          <img [src]="(user | async)?.avatar || 'assets/default-avatar.png'" alt="User Avatar" />
+        </div>
+        <div class="dropdown">
+          <button class="dropdown-toggle" (click)="toggleDropdown()">
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-menu" [class.show]="isDropdownOpen">
+            <a class="dropdown-item" routerLink="/profile">
+              <i class="fas fa-user"></i>
+              Profile
+            </a>
+            <a class="dropdown-item" routerLink="/settings">
+              <i class="fas fa-cog"></i>
+              Settings
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="logout()">
+              <i class="fas fa-sign-out-alt"></i>
+              Logout
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
