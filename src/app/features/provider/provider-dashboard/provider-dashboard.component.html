@@ -1,0 +1,136 @@
+<div class="provider-dashboard-container">
+    <!-- Header Section -->
+    <div class="page-header">
+        <div class="header-content">
+            <h1>👨‍⚕️ Provider Dashboard</h1>
+            <button class="btn btn-outline" (click)="refreshQueue()">
+                <span>🔄</span>
+                Refresh
+            </button>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-content">
+                    <div class="stat-value">{{ totalPatientsWaiting }}</div>
+                    <div class="stat-label">Patients in Queue</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">👨‍⚕️</div>
+                <div class="stat-content">
+                    <div class="stat-value">{{ onlineProvidersCount }} / {{ providers.length }}</div>
+                    <div class="stat-label">Providers Online</div>
+                </div>
+            </div>
+
+            <div class="stat-card" [class.connected]="isConnected" [class.disconnected]="!isConnected">
+                <div class="stat-icon">{{ isConnected ? '🟢' : '🔴' }}</div>
+                <div class="stat-content">
+                    <div class="stat-value">{{ isConnected ? 'Live' : 'Offline' }}</div>
+                    <div class="stat-label">Real-time Updates</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Provider Selection -->
+    <div class="provider-section">
+        <h2>Select Provider</h2>
+        <div class="provider-grid">
+            <div *ngFor="let provider of providers" class="provider-card"
+                [class.selected]="selectedProvider?.id === provider.id" [class.online]="provider.isOnline"
+                (click)="selectProvider(provider)">
+                <div class="provider-header">
+                    <div class="provider-name">{{ provider.providerName }}</div>
+                    <div class="provider-status" [class.online]="provider.isOnline">
+                        <span class="status-dot"></span>
+                        {{ provider.isOnline ? 'Online' : 'Offline' }}
+                    </div>
+                </div>
+                <button class="btn btn-sm" [class.btn-success]="!provider.isOnline"
+                    [class.btn-error]="provider.isOnline"
+                    (click)="toggleProviderStatus(provider); $event.stopPropagation()" [disabled]="isProcessing">
+                    {{ provider.isOnline ? 'Go Offline' : 'Go Online' }}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading State -->
+    <div class="loading-container" *ngIf="isLoading">
+        <div class="spinner"></div>
+        <p>Loading queue...</p>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="!isLoading && queue.length === 0">
+        <div class="empty-icon">✅</div>
+        <h2>No Patients Waiting</h2>
+        <p>The queue is empty. New patients will appear here automatically.</p>
+    </div>
+
+    <!-- Queue List -->
+    <div class="queue-section" *ngIf="!isLoading && queue.length > 0">
+        <h2>Patient Queue</h2>
+        <div class="queue-list">
+            <div class="queue-item" *ngFor="let patient of queue; let i = index">
+                <!-- Position -->
+                <div class="position-badge">
+                    <span class="position-number">#{{ i + 1 }}</span>
+                </div>
+
+                <!-- Patient Details -->
+                <div class="patient-details">
+                    <div class="patient-header">
+                        <h3 class="patient-name">{{ patient.patientName }}</h3>
+                        <div class="patient-meta">
+                            <span class="meta-item">
+                                <span class="meta-icon">🕐</span>
+                                {{ formatJoinTime(patient.joinTime) }}
+                            </span>
+                            <span class="meta-item">
+                                <span class="meta-icon">⏱️</span>
+                                Wait: {{ formatWaitTime(patient.estimatedWaitTimeMinutes) }}
+                            </span>
+                        </div>
+                    </div>
+                    <p class="patient-symptom">
+                        <strong>Symptoms:</strong> {{ patient.symptom }}
+                    </p>
+                </div>
+
+                <!-- Pain Level -->
+                <div class="pain-indicator" [class]="getPainLevelClass(patient.painLevel)">
+                    <div class="pain-value">{{ patient.painLevel }}</div>
+                    <div class="pain-label">{{ getPainLevelLabel(patient.painLevel) }}</div>
+                </div>
+
+                <!-- Actions -->
+                <div class="patient-actions">
+                    <button class="btn btn-primary" (click)="acceptPatient(patient)"
+                        [disabled]="!selectedProvider || !selectedProvider.isOnline || isProcessing">
+                        <span *ngIf="!isProcessing">Accept Patient</span>
+                        <span *ngIf="isProcessing" class="flex align-center gap-2">
+                            <span class="spinner-small"></span>
+                            Processing...
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Banner -->
+    <div class="help-banner" *ngIf="!isLoading">
+        <div class="banner-icon">💡</div>
+        <div class="banner-content">
+            <strong>How to use:</strong> Select a provider and ensure they are online.
+            Click "Accept Patient" to remove them from the queue and begin consultation.
+            The queue updates in real-time as patients join or are accepted.
+        </div>
+    </div>
+</div>

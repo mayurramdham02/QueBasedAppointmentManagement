@@ -1,0 +1,64 @@
+<div class="status-container">
+    <div class="card status-card">
+        <div class="card-header">
+            <div class="icon-wrapper">
+                <span class="header-icon">👨‍⚕️</span>
+            </div>
+            <h1>Provider Status</h1>
+            <p class="subtitle">Manage your availability for the queue</p>
+        </div>
+
+        <!-- Loading State -->
+        <div *ngIf="isLoading" class="loading-state">
+            <div class="spinner"></div>
+            <p>Loading providers...</p>
+        </div>
+
+        <!-- Main Content -->
+        <div *ngIf="!isLoading" class="card-content">
+
+            <!-- Provider Selector -->
+            <div class="form-group">
+                <label for="providerSelect">Select Your Profile</label>
+                <select id="providerSelect" [(ngModel)]="selectedProviderId" (change)="onProviderChange()"
+                    class="form-select">
+                    <option *ngFor="let p of providers" [value]="p.id">
+                        {{ p.providerName }}
+                    </option>
+                </select>
+            </div>
+
+            <!-- Selected Provider View -->
+            <div *ngIf="selectedProvider" class="status-control">
+                <div class="current-status" [class.online]="selectedProvider.isOnline">
+                    <span class="status-label">Current Status</span>
+                    <div class="status-badge">
+                        <span class="status-dot"></span>
+                        {{ selectedProvider.isOnline ? 'ONLINE' : 'OFFLINE' }}
+                    </div>
+                </div>
+
+                <button class="toggle-btn" [class.is-online]="selectedProvider.isOnline" [disabled]="isProcessing"
+                    (click)="toggleStatus()">
+                    <div class="btn-content">
+                        <span class="btn-icon">{{ selectedProvider.isOnline ? '🔴' : '🟢' }}</span>
+                        <span class="btn-text">
+                            {{ isProcessing ? 'Updating...' : (selectedProvider.isOnline ? 'Go Offline' : 'Go Online')
+                            }}
+                        </span>
+                    </div>
+                </button>
+
+                <p class="status-hint">
+                    {{ selectedProvider.isOnline
+                    ? 'You are visible to patients and can accept new cases.'
+                    : 'You are hidden from the active queue. Patients cannot see you.' }}
+                </p>
+            </div>
+
+            <div *ngIf="!selectedProvider && providers.length > 0" class="no-selection">
+                Please select a provider profile above to manage status.
+            </div>
+        </div>
+    </div>
+</div>

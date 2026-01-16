@@ -1,0 +1,307 @@
+.patient-intake-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Page Header */
+.page-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+
+    h1 {
+        color: var(--primary-700);
+        font-size: 2.5rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .subtitle {
+        color: var(--text-secondary);
+        font-size: 1.125rem;
+    }
+}
+
+/* Alert Messages */
+.alert {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+    animation: slideIn 0.3s ease-out;
+
+    &-success {
+        background: linear-gradient(135deg, #43A047 0%, #66BB6A 100%);
+        color: white;
+    }
+
+    &-error {
+        background: linear-gradient(135deg, #E53935 0%, #EF5350 100%);
+        color: white;
+    }
+
+    &-icon {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    &-content {
+        flex: 1;
+
+        h3 {
+            margin: 0 0 var(--spacing-sm) 0;
+            font-size: 1.25rem;
+        }
+
+        p {
+            margin: 0;
+            opacity: 0.9;
+        }
+    }
+}
+
+/* Form Card */
+.form-card {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-2xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: var(--spacing-xl);
+}
+
+.form-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1rem;
+
+    .label-required {
+        color: var(--error);
+    }
+}
+
+/* Form Inputs */
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    border: 2px solid var(--gray-300);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+    background: var(--surface);
+
+    &:focus {
+        outline: none;
+        border-color: var(--primary-500);
+        box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+    }
+
+    &.invalid {
+        border-color: var(--error);
+
+        &:focus {
+            box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.1);
+        }
+    }
+
+    &::placeholder {
+        color: var(--text-disabled);
+    }
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.char-count {
+    text-align: right;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-top: var(--spacing-xs);
+}
+
+/* Error Messages */
+.error-message {
+    color: var(--error);
+    font-size: 0.875rem;
+    margin-top: var(--spacing-xs);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+
+    &::before {
+        content: '⚠';
+    }
+}
+
+/* Pain Level Slider */
+.pain-level-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    color: white;
+    margin-bottom: var(--spacing-md);
+    transition: background-color var(--transition-base);
+
+    .pain-value {
+        font-size: 3rem;
+        font-weight: 700;
+        line-height: 1;
+    }
+
+    .pain-label {
+        font-size: 1.25rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+}
+
+.pain-slider {
+    width: 100%;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background: linear-gradient(to right,
+            #43A047 0%,
+            #FFEB3B 50%,
+            #D32F2F 100%);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--slider-color, var(--primary-600));
+        border: 3px solid white;
+        box-shadow: var(--shadow-md);
+        cursor: pointer;
+        transition: transform var(--transition-fast);
+
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+
+    &::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--slider-color, var(--primary-600));
+        border: 3px solid white;
+        box-shadow: var(--shadow-md);
+        cursor: pointer;
+        transition: transform var(--transition-fast);
+
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+}
+
+.pain-scale-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--spacing-sm);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: flex-end;
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--divider);
+}
+
+/* Info Card */
+.info-card {
+    background: linear-gradient(135deg, var(--primary-50) 0%, var(--secondary-50) 100%);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    border-left: 4px solid var(--primary-600);
+
+    h3 {
+        color: var(--primary-700);
+        margin-bottom: var(--spacing-md);
+    }
+
+    ul {
+        margin: 0;
+        padding-left: var(--spacing-lg);
+        color: var(--text-secondary);
+
+        li {
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.6;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+/* Loading Spinner */
+.spinner-small {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form-card {
+        padding: var(--spacing-lg);
+    }
+
+    .form-actions {
+        flex-direction: column;
+
+        button {
+            width: 100%;
+        }
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+}

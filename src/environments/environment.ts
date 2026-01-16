@@ -1,7 +1,11 @@
+/**
+ * Development environment configuration
+ * Points to local backend API
+ */
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000/api',
-  appName: 'SmartPod Frontend',
-  version: '1.0.0',
-  enableDebug: true
+  apiUrl: 'https://localhost:7062/api',
+  signalRUrl: 'https://localhost:7062/queueHub',
+  appName: 'NeuEu Medical - Urgent Care Queue',
+  version: '1.0.0'
 };

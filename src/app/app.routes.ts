@@ -1,27 +1,43 @@
 import { Routes } from '@angular/router';
-import { AuthGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/auth',
+    redirectTo: '/patient/intake',
     pathMatch: 'full'
   },
   {
-    path: 'auth',
-    loadChildren: () => import('./features/auth/auth.routes').then(m => m.authRoutes)
+    path: 'patient',
+    children: [
+      {
+        path: 'intake',
+        loadComponent: () => import('./features/patient/patient-intake/patient-intake.component')
+          .then(c => c.PatientIntakeComponent)
+      },
+      {
+        path: 'queue',
+        loadComponent: () => import('./features/patient/queue-display/queue-display.component')
+          .then(c => c.QueueDisplayComponent)
+      }
+    ]
   },
   {
-    path: 'dashboard',
-    loadChildren: () => import('./features/dashboard/dashboard.routes').then(m => m.dashboardRoutes),
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'unauthorized',
-    loadComponent: () => import('./shared/components/unauthorized/unauthorized.component').then(c => c.UnauthorizedComponent)
+    path: 'provider',
+    children: [
+      {
+        path: 'dashboard',
+        loadComponent: () => import('./features/provider/provider-dashboard/provider-dashboard.component')
+          .then(c => c.ProviderDashboardComponent)
+      },
+      {
+        path: 'status',
+        loadComponent: () => import('./features/provider/provider-status/provider-status.component')
+          .then(c => c.ProviderStatusComponent)
+      }
+    ]
   },
   {
     path: '**',
-    loadComponent: () => import('./shared/components/not-found/not-found.component').then(c => c.NotFoundComponent)
+    redirectTo: '/patient/intake'
   }
 ];

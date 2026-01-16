@@ -1,7 +1,28 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\smartDataProjects\\NeuEu Medical\\NewEU_POC\\smartPODFrontEndWrapper-main\\AppointmentManagement\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D7D2822C-BFC0-4D61-97BC-D00CAE29A3F6}|AppointmentManagement\\AppointmentManagement.csproj|d:\\smartdataprojects\\neueu medical\\neweu_poc\\smartpodfrontendwrapper-main\\appointmentmanagement\\appointmentmanagement\\controllers\\providercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7D2822C-BFC0-4D61-97BC-D00CAE29A3F6}|AppointmentManagement\\AppointmentManagement.csproj|solutionrelative:appointmentmanagement\\controllers\\providercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7D2822C-BFC0-4D61-97BC-D00CAE29A3F6}|AppointmentManagement\\AppointmentManagement.csproj|d:\\smartdataprojects\\neueu medical\\neweu_poc\\smartpodfrontendwrapper-main\\appointmentmanagement\\appointmentmanagement\\data\\repositories\\queuerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7D2822C-BFC0-4D61-97BC-D00CAE29A3F6}|AppointmentManagement\\AppointmentManagement.csproj|solutionrelative:appointmentmanagement\\data\\repositories\\queuerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7D2822C-BFC0-4D61-97BC-D00CAE29A3F6}|AppointmentManagement\\AppointmentManagement.csproj|d:\\smartdataprojects\\neueu medical\\neweu_poc\\smartpodfrontendwrapper-main\\appointmentmanagement\\appointmentmanagement\\models\\queueitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7D2822C-BFC0-4D61-97BC-D00CAE29A3F6}|AppointmentManagement\\AppointmentManagement.csproj|solutionrelative:appointmentmanagement\\models\\queueitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7D2822C-BFC0-4D61-97BC-D00CAE29A3F6}|AppointmentManagement\\AppointmentManagement.csproj|d:\\smartdataprojects\\neueu medical\\neweu_poc\\smartpodfrontendwrapper-main\\appointmentmanagement\\appointmentmanagement\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D7D2822C-BFC0-4D61-97BC-D00CAE29A3F6}|AppointmentManagement\\AppointmentManagement.csproj|solutionrelative:appointmentmanagement\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7D2822C-BFC0-4D61-97BC-D00CAE29A3F6}|AppointmentManagement\\AppointmentManagement.csproj|d:\\smartdataprojects\\neueu medical\\neweu_poc\\smartpodfrontendwrapper-main\\appointmentmanagement\\appointmentmanagement\\models\\provider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7D2822C-BFC0-4D61-97BC-D00CAE29A3F6}|AppointmentManagement\\AppointmentManagement.csproj|solutionrelative:appointmentmanagement\\models\\provider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,6 +47,71 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProviderController.cs",
+              "DocumentMoniker": "D:\\smartDataProjects\\NeuEu Medical\\NewEU_POC\\smartPODFrontEndWrapper-main\\AppointmentManagement\\AppointmentManagement\\Controllers\\ProviderController.cs",
+              "RelativeDocumentMoniker": "AppointmentManagement\\Controllers\\ProviderController.cs",
+              "ToolTip": "D:\\smartDataProjects\\NeuEu Medical\\NewEU_POC\\smartPODFrontEndWrapper-main\\AppointmentManagement\\AppointmentManagement\\Controllers\\ProviderController.cs",
+              "RelativeToolTip": "AppointmentManagement\\Controllers\\ProviderController.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAA9wDgAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T11:15:24.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "QueueRepository.cs",
+              "DocumentMoniker": "D:\\smartDataProjects\\NeuEu Medical\\NewEU_POC\\smartPODFrontEndWrapper-main\\AppointmentManagement\\AppointmentManagement\\Data\\Repositories\\QueueRepository.cs",
+              "RelativeDocumentMoniker": "AppointmentManagement\\Data\\Repositories\\QueueRepository.cs",
+              "ToolTip": "D:\\smartDataProjects\\NeuEu Medical\\NewEU_POC\\smartPODFrontEndWrapper-main\\AppointmentManagement\\AppointmentManagement\\Data\\Repositories\\QueueRepository.cs",
+              "RelativeToolTip": "AppointmentManagement\\Data\\Repositories\\QueueRepository.cs",
+              "ViewState": "AgIAAKgAAAAAAAAAAAAWwLYAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T10:12:55.412Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\smartDataProjects\\NeuEu Medical\\NewEU_POC\\smartPODFrontEndWrapper-main\\AppointmentManagement\\AppointmentManagement\\appsettings.json",
+              "RelativeDocumentMoniker": "AppointmentManagement\\appsettings.json",
+              "ToolTip": "D:\\smartDataProjects\\NeuEu Medical\\NewEU_POC\\smartPODFrontEndWrapper-main\\AppointmentManagement\\AppointmentManagement\\appsettings.json",
+              "RelativeToolTip": "AppointmentManagement\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-01-16T10:00:14.353Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "QueueItem.cs",
+              "DocumentMoniker": "D:\\smartDataProjects\\NeuEu Medical\\NewEU_POC\\smartPODFrontEndWrapper-main\\AppointmentManagement\\AppointmentManagement\\Models\\QueueItem.cs",
+              "RelativeDocumentMoniker": "AppointmentManagement\\Models\\QueueItem.cs",
+              "ToolTip": "D:\\smartDataProjects\\NeuEu Medical\\NewEU_POC\\smartPODFrontEndWrapper-main\\AppointmentManagement\\AppointmentManagement\\Models\\QueueItem.cs",
+              "RelativeToolTip": "AppointmentManagement\\Models\\QueueItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T09:53:27.304Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Provider.cs",
+              "DocumentMoniker": "D:\\smartDataProjects\\NeuEu Medical\\NewEU_POC\\smartPODFrontEndWrapper-main\\AppointmentManagement\\AppointmentManagement\\Models\\Provider.cs",
+              "RelativeDocumentMoniker": "AppointmentManagement\\Models\\Provider.cs",
+              "ToolTip": "D:\\smartDataProjects\\NeuEu Medical\\NewEU_POC\\smartPODFrontEndWrapper-main\\AppointmentManagement\\AppointmentManagement\\Models\\Provider.cs",
+              "RelativeToolTip": "AppointmentManagement\\Models\\Provider.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T09:53:00.207Z",
+              "EditorCaption": ""
             }
           ]
         }

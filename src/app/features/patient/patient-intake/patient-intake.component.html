@@ -1,0 +1,111 @@
+<div class="patient-intake-container">
+    <!-- Header Section -->
+    <div class="page-header">
+        <h1>🏥 Patient Intake Form</h1>
+        <p class="subtitle">Please provide your information to join the urgent care queue</p>
+    </div>
+
+    <!-- Success Message -->
+    <div class="alert alert-success" *ngIf="submitSuccess">
+        <div class="alert-icon">✓</div>
+        <div class="alert-content">
+            <h3>Successfully Added to Queue!</h3>
+            <p>You will be redirected to the queue view...</p>
+        </div>
+    </div>
+
+    <!-- Error Message -->
+    <div class="alert alert-error" *ngIf="submitError">
+        <div class="alert-icon">⚠</div>
+        <div class="alert-content">
+            <h3>Error</h3>
+            <p>{{ submitError }}</p>
+        </div>
+    </div>
+
+    <!-- Intake Form -->
+    <div class="form-card" *ngIf="!submitSuccess">
+        <form [formGroup]="intakeForm" (ngSubmit)="onSubmit()">
+
+            <!-- Patient Name Field -->
+            <div class="form-group">
+                <label for="patientName" class="form-label">
+                    <span class="label-text">Patient Name</span>
+                    <span class="label-required">*</span>
+                </label>
+                <input type="text" id="patientName" formControlName="patientName" class="form-input"
+                    [class.invalid]="f['patientName'].invalid && f['patientName'].touched"
+                    placeholder="Enter your full name" />
+                <div class="error-message" *ngIf="f['patientName'].invalid && f['patientName'].touched">
+                    <span *ngIf="f['patientName'].errors?.['required']">Patient name is required</span>
+                    <span *ngIf="f['patientName'].errors?.['minlength']">Name must be at least 2 characters</span>
+                    <span *ngIf="f['patientName'].errors?.['maxlength']">Name cannot exceed 100 characters</span>
+                </div>
+            </div>
+
+            <!-- Symptom Field -->
+            <div class="form-group">
+                <label for="symptom" class="form-label">
+                    <span class="label-text">Symptoms / Reason for Visit</span>
+                    <span class="label-required">*</span>
+                </label>
+                <textarea id="symptom" formControlName="symptom" class="form-textarea"
+                    [class.invalid]="f['symptom'].invalid && f['symptom'].touched"
+                    placeholder="Describe your symptoms or reason for urgent care visit" rows="4"></textarea>
+                <div class="error-message" *ngIf="f['symptom'].invalid && f['symptom'].touched">
+                    <span *ngIf="f['symptom'].errors?.['required']">Symptom description is required</span>
+                    <span *ngIf="f['symptom'].errors?.['minlength']">Please provide more details (at least 5
+                        characters)</span>
+                    <span *ngIf="f['symptom'].errors?.['maxlength']">Description cannot exceed 500 characters</span>
+                </div>
+                <div class="char-count">
+                    {{ f['symptom'].value?.length || 0 }} / 500 characters
+                </div>
+            </div>
+
+            <!-- Pain Level Slider -->
+            <div class="form-group">
+                <label for="painLevel" class="form-label">
+                    <span class="label-text">Pain Level</span>
+                    <span class="label-required">*</span>
+                </label>
+                <div class="pain-level-display" [style.background-color]="selectedPainLevel.color">
+                    <span class="pain-value">{{ f['painLevel'].value }}</span>
+                    <span class="pain-label">{{ selectedPainLevel.label }}</span>
+                </div>
+                <input type="range" id="painLevel" formControlName="painLevel" class="pain-slider" min="1" max="10"
+                    step="1" [style.--slider-color]="selectedPainLevel.color" />
+                <div class="pain-scale-labels">
+                    <span>1 - Minimal</span>
+                    <span>5 - Moderate</span>
+                    <span>10 - Worst</span>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" (click)="resetForm()" [disabled]="isSubmitting">
+                    Reset Form
+                </button>
+                <button type="submit" class="btn btn-primary" [disabled]="intakeForm.invalid || isSubmitting">
+                    <span *ngIf="!isSubmitting">Join Queue</span>
+                    <span *ngIf="isSubmitting" class="flex align-center gap-2">
+                        <span class="spinner-small"></span>
+                        Adding to Queue...
+                    </span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Info Card -->
+    <div class="info-card">
+        <h3>📋 What to Expect</h3>
+        <ul>
+            <li>You will be added to the urgent care queue based on arrival time and severity</li>
+            <li>Estimated wait times are calculated based on current queue and available providers</li>
+            <li>You can view your position in the queue on the "View Queue" page</li>
+            <li>A provider will accept your case when available</li>
+        </ul>
+    </div>
+</div>

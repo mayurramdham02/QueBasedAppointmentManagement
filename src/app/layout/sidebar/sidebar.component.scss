@@ -1,0 +1,235 @@
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 280px;
+    background: linear-gradient(180deg, var(--primary-700) 0%, var(--primary-900) 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    transition: width var(--transition-base);
+    z-index: 1000;
+    box-shadow: var(--shadow-xl);
+
+    &.collapsed {
+        width: 80px;
+
+        .logo-text,
+        .section-title,
+        .nav-label,
+        .nav-badge {
+            display: none;
+        }
+
+        .sidebar-header {
+            justify-content: center;
+        }
+
+        .section-header {
+            justify-content: center;
+        }
+
+        .nav-link {
+            justify-content: center;
+        }
+    }
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.logo-icon {
+    font-size: 2rem;
+}
+
+.logo-text {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.toggle-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition-fast);
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* Navigation */
+.sidebar-nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--spacing-md) 0;
+}
+
+.nav-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.section-icon {
+    font-size: 1.25rem;
+}
+
+.section-title {
+    white-space: nowrap;
+}
+
+/* Nav Items */
+.nav-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    position: relative;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+
+    &.active {
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        font-weight: 600;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--accent-500);
+        }
+    }
+}
+
+.nav-icon {
+    font-size: 1.5rem;
+    min-width: 24px;
+    text-align: center;
+}
+
+.nav-label {
+    flex: 1;
+    white-space: nowrap;
+}
+
+.nav-badge {
+    background: var(--accent-500);
+    color: white;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+    padding: var(--spacing-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.connection-status {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gray-400);
+
+    &.online {
+        background: var(--success);
+        box-shadow: 0 0 8px var(--success);
+        animation: pulse 2s infinite;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Scrollbar for sidebar */
+.sidebar-nav::-webkit-scrollbar {
+    width: 4px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80px;
+
+        .logo-text,
+        .section-title,
+        .nav-label,
+        .nav-badge,
+        .sidebar-footer {
+            display: none;
+        }
+    }
+}

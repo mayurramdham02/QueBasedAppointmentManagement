@@ -1,0 +1,42 @@
+<aside class="sidebar" [class.collapsed]="isSidebarCollapsed">
+    <!-- Sidebar Header -->
+    <div class="sidebar-header">
+        <div class="logo">
+            <span class="logo-icon">🏥</span>
+            <span class="logo-text" *ngIf="!isSidebarCollapsed">NeuEu Medical</span>
+        </div>
+        <button class="toggle-btn" (click)="toggleSidebar()" aria-label="Toggle Sidebar">
+            <span>{{ isSidebarCollapsed ? '→' : '←' }}</span>
+        </button>
+    </div>
+
+    <!-- Navigation Sections -->
+    <nav class="sidebar-nav">
+        <div class="nav-section" *ngFor="let section of navSections">
+            <!-- Section Header -->
+            <div class="section-header">
+                <span class="section-icon">{{ section.icon }}</span>
+                <span class="section-title" *ngIf="!isSidebarCollapsed">{{ section.title }}</span>
+            </div>
+
+            <!-- Section Items -->
+            <ul class="nav-items">
+                <li *ngFor="let item of section.items">
+                    <a [routerLink]="item.route" routerLinkActive="active" class="nav-link" [title]="item.label">
+                        <span class="nav-icon">{{ item.icon }}</span>
+                        <span class="nav-label" *ngIf="!isSidebarCollapsed">{{ item.label }}</span>
+                        <span class="nav-badge" *ngIf="item.badge && !isSidebarCollapsed">{{ item.badge }}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer" *ngIf="!isSidebarCollapsed">
+        <div class="connection-status">
+            <span class="status-dot online"></span>
+            <span class="status-text">Connected</span>
+        </div>
+    </div>
+</aside>

@@ -1,0 +1,104 @@
+<div class="queue-display-container">
+    <!-- Header Section -->
+    <div class="page-header">
+        <div class="header-content">
+            <h1>👥 Urgent Care Queue</h1>
+            <button class="btn btn-outline" (click)="refreshQueue()">
+                <span>🔄</span>
+                Refresh
+            </button>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-content">
+                    <div class="stat-value">{{ totalPatientsWaiting }}</div>
+                    <div class="stat-label">Patients Waiting</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">👨‍⚕️</div>
+                <div class="stat-content">
+                    <div class="stat-value">{{ onlineProvidersCount }}</div>
+                    <div class="stat-label">Providers Online</div>
+                </div>
+            </div>
+
+            <div class="stat-card" [class.connected]="isConnected" [class.disconnected]="!isConnected">
+                <div class="stat-icon">{{ isConnected ? '🟢' : '🔴' }}</div>
+                <div class="stat-content">
+                    <div class="stat-value">{{ isConnected ? 'Live' : 'Offline' }}</div>
+                    <div class="stat-label">Connection Status</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading State -->
+    <div class="loading-container" *ngIf="isLoading">
+        <div class="spinner"></div>
+        <p>Loading queue...</p>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="!isLoading && queue.length === 0">
+        <div class="empty-icon">📋</div>
+        <h2>No Patients in Queue</h2>
+        <p>The queue is currently empty. Patients will appear here as they join.</p>
+    </div>
+
+    <!-- Queue List -->
+    <div class="queue-list" *ngIf="!isLoading && queue.length > 0">
+        <div class="queue-item" *ngFor="let item of queue; let i = index">
+            <!-- Position Badge -->
+            <div class="position-badge">
+                <span class="position-number">#{{ i + 1 }}</span>
+            </div>
+
+            <!-- Patient Info -->
+            <div class="patient-info">
+                <h3 class="patient-name">{{ item.patientName }}</h3>
+                <p class="patient-symptom">{{ item.symptom }}</p>
+                <div class="patient-meta">
+                    <span class="meta-item">
+                        <span class="meta-icon">🕐</span>
+                        Joined: {{ formatJoinTime(item.joinTime) }}
+                    </span>
+                </div>
+            </div>
+
+            <!-- Pain Level Indicator -->
+            <div class="pain-indicator" [class]="getPainLevelClass(item.painLevel)">
+                <div class="pain-value">{{ item.painLevel }}</div>
+                <div class="pain-label">{{ getPainLevelLabel(item.painLevel) }}</div>
+            </div>
+
+            <!-- Wait Time -->
+            <div class="wait-time">
+                <div class="wait-icon">⏱️</div>
+                <div class="wait-content">
+                    <div class="wait-value">{{ formatWaitTime(item.estimatedWaitTimeMinutes) }}</div>
+                    <div class="wait-label">Est. Wait</div>
+                </div>
+            </div>
+
+            <!-- Status Badge -->
+            <div class="status-badge" [class]="item.status.toLowerCase()">
+                {{ item.status }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Banner -->
+    <div class="info-banner" *ngIf="!isLoading">
+        <div class="banner-icon">ℹ️</div>
+        <div class="banner-content">
+            <strong>Real-time Updates:</strong> This queue updates automatically when patients join or providers accept
+            cases.
+            Wait times are estimated based on current queue position and available providers.
+        </div>
+    </div>
+</div>
