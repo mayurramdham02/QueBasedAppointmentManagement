@@ -1,0 +1,83 @@
+<mat-toolbar color="primary">
+      <span>Dashboard</span>
+      <span class="spacer"></span>
+      <!-- <span>Welcome, {{ currentUser?.name }}!</span> -->
+      <span>Welcome, xyz</span>
+      <button mat-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Logout
+      </button>
+    </mat-toolbar>
+
+    <div class="dashboard-content">
+      <mat-grid-list cols="4" rowHeight="200" class="stats-grid">
+        <mat-grid-tile>
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Total Users</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <h2>1,234</h2>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        
+        <mat-grid-tile>
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Active Sessions</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <h2>567</h2>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        
+        <mat-grid-tile>
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Revenue</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <h2>$12,345</h2>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        
+        <mat-grid-tile>
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Growth</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <h2>+23%</h2>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <mat-card class="activity-card">
+        <mat-card-header>
+          <mat-card-title>Recent Activity</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item>
+              <mat-icon matListIcon>person_add</mat-icon>
+              <div matLine>New user registered</div>
+              <div matLine>2 hours ago</div>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon matListIcon>backup</mat-icon>
+              <div matLine>System backup completed</div>
+              <div matLine>4 hours ago</div>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon matListIcon>update</mat-icon>
+              <div matLine>New feature deployed</div>
+              <div matLine>1 day ago</div>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
