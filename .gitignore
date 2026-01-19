@@ -1,4 +1,6 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# ===========================
+# NODE / ANGULAR / FRONTEND
+# ===========================
 
 # Compiled output
 /dist
@@ -6,10 +8,11 @@
 /out-tsc
 /bazel-out
 
-# Node
+# Dependencies
 /node_modules
 npm-debug.log
 yarn-error.log
+pnpm-debug.log*
 
 # IDEs and editors
 .idea/
@@ -26,9 +29,9 @@ yarn-error.log
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-.history/*
+.history/
 
-# Miscellaneous
+# Angular
 /.angular/cache
 .sass-cache/
 /connect.lock
@@ -40,3 +43,69 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# ===========================
+# .NET / C# / BACKEND
+# ===========================
+
+# Build results
+[Bb]in/
+[Oo]bj/
+/src/bin/
+/src/obj/
+
+# Visual Studio 2019+
+.vs/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific build files
+*.userprefs
+
+# Mono auto generated files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code directories for C#
+.omisharp/
+
+# Dotnet Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET Core
+**/appsettings.Development.json
+**/appsettings.Production.json
+# Be careful with appsettings.json, usually you want the template but not secrets. 
+# If you have secrets in appsettings.json, uncomment the next line:
+# **/appsettings.json
+**/appsettings.local.json
+
+# Local SSL Certificates created by dotnet dev-certs
+*.pfx
+*.crt
+*.key
+
+# Entity Framework
+*.db
+*.db-shm
+*.db-wal
+
+# Log files
+*.log
+/logs/
