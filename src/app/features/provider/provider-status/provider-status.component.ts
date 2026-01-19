@@ -76,6 +76,8 @@ export class ProviderStatusComponent implements OnInit, OnDestroy {
 
   toggleStatus(): void {
     const provider = this.selectedProvider;
+    console.log('DEBUG: Provider object:', provider);
+    console.log('DEBUG: old isOnline:', provider?.isOnline, 'Type:', typeof provider?.isOnline);
     if (!provider || this.isProcessing) return;
 
     this.isProcessing = true;
