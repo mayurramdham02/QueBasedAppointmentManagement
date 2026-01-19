@@ -75,6 +75,10 @@ try
             // Configure JSON serialization - Use CamelCase (standard for JS/TS)
             options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
             options.JsonSerializerOptions.WriteIndented = builder.Environment.IsDevelopment();
+            // Fix for "A possible object cycle was detected" error
+            options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+            // Serialize enums as strings
+            options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
         });
 
     // ===== Add API Documentation =====

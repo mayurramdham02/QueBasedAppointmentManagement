@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
@@ -20,9 +20,11 @@ export class ProviderStatusComponent implements OnInit, OnDestroy {
   isProcessing = false;
   private destroy$ = new Subject<void>();
 
+
   constructor(
     private queueService: QueueService,
-    private providerService: ProviderService
+    private providerService: ProviderService,
+    private ngZone: NgZone
   ) {}
 
   ngOnInit(): void {
@@ -39,21 +41,25 @@ export class ProviderStatusComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (providers) => {
-          this.providers = providers;
-          this.isLoading = false;
-          
-          // Restore selected provider if exists and valid
-          const storedId = localStorage.getItem('selectedProviderId');
-          if (storedId && providers.some(p => p.id === storedId)) {
-            this.selectedProviderId = storedId;
-          } else if (!this.selectedProviderId && providers.length > 0) {
-            // Default to first if nothing selected
-             this.selectedProviderId = providers[0].id;
-          }
+          this.ngZone.run(() => {
+            this.providers = providers;
+            this.isLoading = false;
+            
+            // Restore selected provider if exists and valid
+            const storedId = localStorage.getItem('selectedProviderId');
+            if (storedId && providers.some(p => p.id === storedId)) {
+              this.selectedProviderId = storedId;
+            } else if (!this.selectedProviderId && providers.length > 0) {
+              // Default to first if nothing selected
+               this.selectedProviderId = providers[0].id;
+            }
+          });
         },
         error: (error) => {
           console.error('Error receiving provider updates:', error);
-          this.isLoading = false;
+          this.ngZone.run(() => {
+            this.isLoading = false;
+          });
         }
       });
   }
@@ -73,17 +79,21 @@ export class ProviderStatusComponent implements OnInit, OnDestroy {
     if (!provider || this.isProcessing) return;
 
     this.isProcessing = true;
-    const newStatus = !provider.isOnline;
+    const newStatus = !provider.isOnline; // Logic fixed
 
     this.providerService.toggleOnlineStatus(provider.id, newStatus).subscribe({
       next: () => {
         // Optimistic update handled by SignalR subscription
-        this.isProcessing = false;
+        this.ngZone.run(() => {
+          this.isProcessing = false;
+        });
       },
       error: (error) => {
         console.error('Error toggling status:', error);
         alert('Failed to update status. Please try again.');
-        this.isProcessing = false;
+        this.ngZone.run(() => {
+          this.isProcessing = false;
+        });
       }
     });
   }

@@ -109,3 +109,6 @@ artifacts/
 # Log files
 *.log
 /logs/
+
+# vs code
+.vs

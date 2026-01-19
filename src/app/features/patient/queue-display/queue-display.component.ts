@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
 import { QueueService } from '../../../core/services/queue.service';
@@ -18,7 +18,7 @@ export class QueueDisplayComponent implements OnInit, OnDestroy {
   isLoading = true;
   private destroy$ = new Subject<void>();
 
-  constructor(private queueService: QueueService) {}
+  constructor(private queueService: QueueService, private ngZone: NgZone) {}
 
   ngOnInit(): void {
     this.subscribeToQueue();
@@ -36,12 +36,17 @@ export class QueueDisplayComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (queue) => {
-          this.queue = queue;
-          this.isLoading = false;
+          this.ngZone.run(() => {
+            this.queue = queue;
+            console.log("Queue updated:", this.queue.length, "items");
+            this.isLoading = false;
+          });
         },
         error: (error) => {
           console.error('Error receiving queue updates:', error);
-          this.isLoading = false;
+          this.ngZone.run(() => {
+            this.isLoading = false;
+          });
         }
       });
   }
